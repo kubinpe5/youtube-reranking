@@ -1,2 +1,2 @@
 # youtube-reranking
-our awesome project
+OUR AWESOME PROJECT
