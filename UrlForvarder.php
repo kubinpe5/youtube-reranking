@@ -1,17 +1,14 @@
 <?php
 
-class Connector {
+class UrlForvarder {
 
 	private $myKey;
 
 	/**
 	 * Constructor
 	 */
-	public function __construct( $key = '' ) {		
-		if ( $key == '' ) 
-			$this->myKey = 'AIzaSyBVYtP85g7VCilGKbzkQqPCf8CxokAfvhU';
-		else 
-			$this->myKey = $key;
+	public function __construct( $key ) {		
+			$this->$myKey = $key;
 	}
 
     /**
