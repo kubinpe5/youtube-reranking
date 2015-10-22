@@ -3,6 +3,7 @@ error_reporting( E_ERROR | E_PARSE );
 ini_set( 'display_errors', 1 );
 
 include_once "Connector.php";
+include_once "QuerySearch.php";
 
 $myUrls = array(
 	'<strong>Direct URL:</strong><br>'								=> 'https://www.youtube.com/watch?v=HYCsJsTHM3Y',

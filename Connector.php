@@ -7,18 +7,11 @@ class Connector {
 	/**
 	 * Constructor
 	 */
-	public function __construct( $url, $key = '' ) {		
+	public function __construct( $key = '' ) {		
 		if ( $key == '' ) 
 			$this->myKey = 'AIzaSyBVYtP85g7VCilGKbzkQqPCf8CxokAfvhU';
 		else 
 			$this->myKey = $key;
-		echo 'Given URL is: "'.( $url ).'"<br>';
-		$url = $this->redirect( $url );
-		echo 'Final URL is: "'.( $url ).'"<br>';
-		$videoid = $this->getId( $url );
-		echo 'Video id is: "'.( $videoid ).'"</br>';
-		$uri = 'https://www.googleapis.com/youtube/v3/videos?id='.( $videoid ).'&key='.( $this->myKey ).'&part=snippet,statistics,contentDetails,status';
-		echo 'URI is: "'.( $uri ).'"</br>';
 	}
 
     /**
