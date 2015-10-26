@@ -29,11 +29,7 @@ class QuerySearch {
     		array_push($videoResults, $searchResult['id']['videoId']);
     	}
     	
-    	$videoIds = join(',', $videoResults);	
-
-    	echo "Video idees <br>";
-    	echo $videoIds;
-    	echo "Video idees <br>";
+    	return $videoResults;
 	}
 }
 /*

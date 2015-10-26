@@ -2,13 +2,10 @@
 
 class UrlForvarder {
 
-	private $myKey;
-
 	/**
 	 * Constructor
 	 */
-	public function __construct( $key ) {		
-			$this->$myKey = $key;
+	public function __construct( ) {
 	}
 
     /**
