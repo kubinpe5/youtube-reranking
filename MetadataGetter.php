@@ -39,7 +39,9 @@ class MetadataGetter {
 			"&key=".API_KEY."&part=snippet,statistics,contentDetails,recordingDetails");
 		$my_hash = json_decode($json); 
 		
+		$returnObject->id = $id;
 		$returnObject->name = $my_hash->items[0]->snippet->title;
+		$returnObject->author = $my_hash->items[0]->snippet->channelTitle;
 		$returnObject->publishedAt = $my_hash->items[0]->snippet->publishedAt;
 		$returnObject->definition = $my_hash->items[0]->contentDetails->definition;
 		$returnObject->viewCount = $my_hash->items[0]->statistics->viewCount;

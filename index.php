@@ -29,21 +29,57 @@ if (isset($_POST['submit'])) {
 	<body>
 		<h1>YouTube reranking</h1>
 		<form action="./" method="POST"> 
-			<dl>
-				<dt><label for="keywords" >Vyhledat</label></dt>
-					<dd><input type="text" name="keywords" value="<?php echo $keywords; ?>" id="keywords" placeholder="Zde zadejte vyhledávaný výraz." required></dd>
-				<dt><label for="max_results" >Počet výsledků</label></dt>
-					<dd><input type="number" name="max_results" id="max_results" value="<?php echo $max_results ? $max_results : 20; ?>" required min="10" max="50"></dd>
-				<dt>Odeslat</dt>
-					<dd><input type="submit" name="submit" value="Odeslat"></dd>
-			</dl>
+			<fieldset>
+				<legend>Základní iformace</legend>
+				<dl>
+					<dt><label for="keywords" >Vyhledat</label></dt>
+						<dd><input type="text" name="keywords" value="<?php echo $keywords; ?>" id="keywords" placeholder="Zde zadejte vyhledávaný výraz." required></dd>
+					<dt><label for="max_results" >Počet výsledků</label></dt>
+						<dd><input type="number" name="max_results" id="max_results" value="<?php echo $max_results ? $max_results : 20; ?>" required min="10" max="50"></dd>
+				</dl>
+			</fieldset>
+			<fieldset>
+				<legend>Informace k přerankování</legend>
+				<dl>
+					<dt>Autor</dt>
+						<dd>
+							<input type="checkbox" name="author_checkbox">
+							<input type="range" name="author_scale" min="0" max="100">
+							<input type="text" name="author_value">
+						</dd>
+					<dt></dt>
+						<dd>
+
+						</dd>
+				</dl>
+			</fieldset>
+			<input type="submit" name="submit" value="Odeslat">
 		</form>
 <?php
 if (isset($_POST['submit'])) {
 	$metadataGetter->startIteration();
+?>
+		<table>
+			<thead>
+				<tr>
+					<th>Původní výsledek</th>
+					<th>Přerankovaný výsledek</th>
+				</tr>
+			</thead>
+			<tbody>
+<?php
 	while ( !is_null($metastore = $metadataGetter->nextElem()) ) {
-		echo $metastore;
+?>
+				<tr>
+					<td><?php echo $metastore; ?></td>
+					<td>Ve vývoji...</td>
+				</tr>
+<?php
 	}
+?>
+			</tbody>
+		</table>
+<?php
 }
 ?>
 	</body>
