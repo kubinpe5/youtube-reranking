@@ -7,7 +7,7 @@ include_once "UrlForvarder.php";
 include_once "QuerySearch.php";
 include_once "MetadataGetter.php";
 
-define ('API_KEY', 'AIzaSyBVYtP85g7VCilGKbzkQqPCf8CxokAfvhU');
+define ('API_KEY', 'AIzaSyDzWsixl9gkY7ux_cmTY9C7Zqh39SxCUvE');
 
 if (isset($_POST['submit'])) {
 	$keywords = htmlspecialchars($_POST['keywords']);
