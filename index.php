@@ -25,8 +25,7 @@ $queryResults = $querySearch->getResults($keywords, $max_results);
 
 $metadataGetter = new MetadataGetter($queryResults);
 
-$metadataGetter->startIteration();
-$metadataGetter->nextElem();
+
 ?>
 
 <!DOCTYPE html>
@@ -55,6 +54,16 @@ $metadataGetter->nextElem();
 
 			
 		</form>
+
+<?php
+
+$metadataGetter->startIteration();
+
+while ( !is_null($metastore = $metadataGetter->nextElem()) ) {
+	echo $metastore;
+}
+
+?>
 
 	</body>
 
