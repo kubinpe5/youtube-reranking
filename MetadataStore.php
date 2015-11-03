@@ -14,7 +14,6 @@ class MetadataStore {
 	public $longitude;
 	public $publishedAt;
 
-
 	public $address;
 
 	public function __toString() {

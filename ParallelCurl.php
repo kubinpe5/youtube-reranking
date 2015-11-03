@@ -1,38 +1,5 @@
 <?php
 
-// This class is designed to make it easy to run multiple curl requests in parallel, rather than
-// waiting for each one to finish before starting the next. Under the hood it uses curl_multi_exec
-// but since I find that interface painfully confusing, I wanted one that corresponded to the tasks
-// that I wanted to run.
-//
-// To use it, first create the ParallelCurl object:
-//
-// $parallelcurl = new ParallelCurl(10);
-//
-// The first argument to the constructor is the maximum number of outstanding fetches to allow
-// before blocking to wait for one to finish. You can change this later using setMaxRequests()
-// The second optional argument is an array of curl options in the format used by curl_setopt_array()
-//
-// Next, start a URL fetch:
-//
-// $parallelcurl->startRequest('http://example.com', 'on_request_done', array('something'));
-//
-// The first argument is the address that should be fetched
-// The second is the callback function that will be run once the request is done
-// The third is a 'cookie', that can contain arbitrary data to be passed to the callback
-//
-// This startRequest call will return immediately, as long as less than the maximum number of
-// requests are outstanding. Once the request is done, the callback function will be called, eg:
-//
-// on_request_done($content, 'http://example.com', $ch, array('something'));
-//
-// The callback should take four arguments. The first is a string containing the content found at
-// the URL. The second is the original URL requested, the third is the curl handle of the request that
-// can be queried to get the results, and the fourth is the arbitrary 'cookie' value that you 
-// associated with this object. This cookie contains user-defined data.
-//
-// By Pete Warden <pete@petewarden.com>, freely reusable, see http://petewarden.typepad.com for more
-
 class ParallelCurl {
     
     public $max_requests;

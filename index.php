@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
 
 	$allTimes = 0;
 	$times = array();
-	
+
 	$timeStart = microtime(true);
 		$querySearch = new QuerySearch();
 		$queryResults = $querySearch->getResults($keywords, $max_results);
@@ -91,6 +91,7 @@ if (isset($_POST['submit'])) {
 			</tbody>
 		</table>
 		<table>
+			<caption>Výsledky</caption>
 			<thead>
 				<tr>
 					<th>Původní výsledek</th>
