@@ -14,10 +14,19 @@ if (isset($_POST['submit'])) {
 		$max_results = $_POST['max_results'];
 	else
 		throw new Exception("Error Processing Request", 1);
-	echo "keywords: ".$keywords." and max_results: ".$max_results."<br>";
-	$querySearch = new QuerySearch();
-	$queryResults = $querySearch->getResults($keywords, $max_results);
-	$metadataGetter = new MetadataGetter($queryResults);
+
+	$allTimes = 0;
+	$times = array();
+	
+	$timeStart = microtime(true);
+		$querySearch = new QuerySearch();
+		$queryResults = $querySearch->getResults($keywords, $max_results);
+		$metadataGetter = new MetadataGetter($queryResults);
+		$metastores = $metadataGetter->getAllMetadata();
+	$timeEnd = microtime(true);
+	$time = $timeEnd - $timeStart;
+	$times['Komunikace s Youtube API'] = $time;
+	$allTimes += $time;
 }
 ?>
 <!DOCTYPE html>
@@ -55,10 +64,32 @@ if (isset($_POST['submit'])) {
 			</fieldset>
 			<input type="submit" name="submit" value="Odeslat">
 		</form>
+
 <?php
 if (isset($_POST['submit'])) {
-	$metadataGetter->startIteration();
 ?>
+		<table>
+			<caption>Časy vykonaných úkonů</caption>
+			<thead>
+				<tr>
+					<th>Úkon</th>
+					<th>Čas</th>
+				</tr>
+			</thead>
+			<tfoot>
+				<tr>
+					<th>Celkový čas</th>
+					<th><?php echo $allTimes; ?>s</th>
+				</tr>
+			</tfoot>
+			<tbody>
+<?php
+				foreach( $times as $task => $time ) {
+					echo "<tr><td>$task</td><td>".$time."s</td></tr>";
+				}
+?>
+			</tbody>
+		</table>
 		<table>
 			<thead>
 				<tr>
@@ -68,7 +99,7 @@ if (isset($_POST['submit'])) {
 			</thead>
 			<tbody>
 <?php
-	while ( !is_null($metastore = $metadataGetter->nextElem()) ) {
+	foreach ( $metastores as $metastore ) {
 ?>
 				<tr>
 					<td><?php echo $metastore; ?></td>

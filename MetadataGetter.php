@@ -1,16 +1,32 @@
 <?php
 
 include_once "MetadataStore.php";
+include_once "ParallelCurl.php";
+
+$GLOBALS['metastores'];
+
+function on_request_done($content, $url, $ch, $search) {
+    $my_hash = json_decode($content);
+    $metastore = new MetadataStore();
+	$metastore->id = $search['id'];
+	$metastore->name = $my_hash->items[0]->snippet->title;
+	$metastore->author = $my_hash->items[0]->snippet->channelTitle;
+	$metastore->publishedAt = $my_hash->items[0]->snippet->publishedAt;
+	$metastore->definition = $my_hash->items[0]->contentDetails->definition;
+	$metastore->viewCount = $my_hash->items[0]->statistics->viewCount;
+	$metastore->likeCount = $my_hash->items[0]->statistics->likeCount;
+	$metastore->dislikeCount = $my_hash->items[0]->statistics->dislikeCount;
+	$metastore->commentCount = $my_hash->items[0]->statistics->commentCount;
+	$metastore->latitude = $my_hash->items[0]->recordingDetails->location->latitude;
+	$metastore->longitude = $my_hash->items[0]->recordingDetails->location->longitude;
+	$GLOBALS['metastores'][] = $metastore;
+}
 
 class MetadataGetter {
 	private $videoResults;
 
 	function __construct( array $videoResults ) {
 		$this->videoResults = $videoResults;
-	}
-
-	private function get_remote_data( $url ) {
-		return file_get_contents( $url );
 	}
 
 	public function getaddress( $lat, $lon ) {
@@ -24,39 +40,22 @@ class MetadataGetter {
 			return false;
 	}
 
-
-	public function startIteration() {
-		reset($videoResults);
-	}
-
-	public function nextElem() {
-		$returnObject = new MetadataStore();
-		$id = next($this->videoResults);
-		if ( $id == null )
-			return null;
-		
-		$json = $this->get_remote_data("https://www.googleapis.com/youtube/v3/videos?id=".$id.
-			"&key=".API_KEY."&part=snippet,statistics,contentDetails,recordingDetails");
-		$my_hash = json_decode($json); 
-		
-		$returnObject->id = $id;
-		$returnObject->name = $my_hash->items[0]->snippet->title;
-		$returnObject->author = $my_hash->items[0]->snippet->channelTitle;
-		$returnObject->publishedAt = $my_hash->items[0]->snippet->publishedAt;
-		$returnObject->definition = $my_hash->items[0]->contentDetails->definition;
-		$returnObject->viewCount = $my_hash->items[0]->statistics->viewCount;
-		$returnObject->likeCount = $my_hash->items[0]->statistics->likeCount;
-		$returnObject->dislikeCount = $my_hash->items[0]->statistics->dislikeCount;
-		$returnObject->commentCount = $my_hash->items[0]->statistics->commentCount;
-		$returnObject->latitude = $my_hash->items[0]->recordingDetails->location->latitude;
-		$returnObject->longitude = $my_hash->items[0]->recordingDetails->location->longitude;
-//		$returnObject->address = $this->getaddress($latitude, $longitude);
-
-		return $returnObject;
-	}	
-
-	public function prevElem() {
-		$id = prev($videoResults);
+	public function getAllMetadata() {
+		$GLOBALS['metastores'] = array();
+		$curl_options = array(
+		    CURLOPT_SSL_VERIFYPEER => FALSE,
+		    CURLOPT_SSL_VERIFYHOST => FALSE,
+		    CURLOPT_USERAGENT, 'Parallel Curl goolge API request',
+		);
+		$parallel_curl = new ParallelCurl( count($this->videoResults), $curl_options );
+		foreach ( $this->videoResults as $id ) {
+			$metastore = new MetadataStore();
+			$search_url = "https://www.googleapis.com/youtube/v3/videos?id=".$id.
+				"&key=".API_KEY."&part=snippet,statistics,contentDetails,recordingDetails";
+			$parallel_curl->startRequest( $search_url, 'on_request_done', array( 'id' => $id) );
+		}
+		$parallel_curl->finishAllRequests();
+		return $GLOBALS['metastores'];
 	}
 
 }
