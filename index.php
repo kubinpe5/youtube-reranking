@@ -9,6 +9,7 @@ include_once "QuerySearch.php";
 include_once "MetadataGetter.php";
 include_once "RerankInput.php";
 include_once "DateDistance.php";
+include_once "AuthorDistance";
 include_once "ViewsDistance.php";
 
 if (isset($_POST['submit'])) {
