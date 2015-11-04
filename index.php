@@ -8,6 +8,8 @@ include_once "UrlForvarder.php";
 include_once "QuerySearch.php";
 include_once "MetadataGetter.php";
 include_once "RerankInput.php";
+include_once "DateDistance.php";
+include_once "ViewsDistance.php";
 
 if (isset($_POST['submit'])) {
 	$keywords 		= handleTextInput( $_POST['keywords'] );
@@ -23,9 +25,28 @@ if (isset($_POST['submit'])) {
 		$querySearch = new QuerySearch();
 		$queryResults = $querySearch->getResults($keywords, $max_results);
 		$metadataGetter = new MetadataGetter($queryResults);
-		$metastores = $metadataGetter->getAllMetadata();
+		$rawMetastores = $metadataGetter->getAllMetadata();
+		$rank = 0;
+		$metastores = array();
+    	foreach( $rawMetastores as &$metastore ) {
+    		$metastore->setOldRank( ++$rank );
+    		$metastores [$rank] = $metastore;
+    	}
 	$timeEnd = microtime(true);
 	$times['Komunikace s Youtube API'] = $timeEnd - $timeStart;
+
+	$dateDistance 	= new DateDistance( $metastores );
+	$viewsDistance 	= new ViewsDistance( $metastores );
+
+	$timeStart = microtime(true);
+		$dateDistance->compute( $rerankInputs['published']->getCheckbox(), $rerankInputs['published']->getRange(), $rerankInputs['published']->getValue() );
+	$timeEnd = microtime(true);
+	$times['Výpočet vzdáleností datumů'] = $timeEnd - $timeStart;
+
+	$timeStart = microtime(true);
+		$viewsDistance->compute( $rerankInputs['views']->getCheckbox(), $rerankInputs['views']->getRange(), $rerankInputs['views']->getValue() );
+	$timeEnd = microtime(true);
+	$times['Výpočet vzdáleností počtu shlénutí'] = $timeEnd - $timeStart;
 
 	$allTimes = 0;
 	foreach( $times as $time )
@@ -95,13 +116,13 @@ if (isset($_POST['submit'])) {
 			<thead>
 				<tr>
 					<th>Úkon</th>
-					<th>Čas</th>
+					<th>Zaokrouhlený čas</th>
 				</tr>
 			</thead>
 			<tfoot>
 				<tr>
 					<th>Celkový čas</th>
-					<th><?php echo $allTimes; ?>s</th>
+					<th><?php echo round( $allTimes, 3 ); ?>s</th>
 				</tr>
 			</tfoot>
 			<tbody>
@@ -110,7 +131,7 @@ if (isset($_POST['submit'])) {
 ?>
 				<tr>
 					<td><?php echo $task; ?></td>
-					<td><?php echo $time; ?>s</td>
+					<td><?php echo round( $time, 3 ); ?>s</td>
 				</tr>
 <?php
 	}
@@ -128,11 +149,10 @@ if (isset($_POST['submit'])) {
 			</thead>
 			<tbody>
 <?php
-	$rank = 1;
-	foreach( $metastores as $metastore ) {
+	foreach( $metastores as &$metastore ) {
 ?>
 				<tr>
-					<td><?php echo $rank++; ?></td>
+					<td><?php echo $metastore->getOldRank(); ?></td>
 					<td><?php echo $metastore; ?></td>
 					<td>Ve vývoji...</td>
 				</tr>
