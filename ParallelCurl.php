@@ -117,7 +117,6 @@ class ParallelCurl {
             $this->checkForCompletedRequests();
             if (count($this->outstanding_requests) < $max)
                 break;
-            
             usleep(10000);
         }
     }

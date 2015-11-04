@@ -4,7 +4,6 @@ include_once "MetadataStore.php";
 include_once "ParallelCurl.php";
 
 $GLOBALS['metastores'];
-
 function on_request_done($content, $url, $ch, $search) {
     $my_hash = json_decode($content);
     $metastore = new MetadataStore();
@@ -45,7 +44,7 @@ class MetadataGetter {
 		$curl_options = array(
 		    CURLOPT_SSL_VERIFYPEER => FALSE,
 		    CURLOPT_SSL_VERIFYHOST => FALSE,
-		    CURLOPT_USERAGENT, 'Parallel Curl goolge API request',
+		    CURLOPT_USERAGENT, 'Parallel Curl google API request'
 		);
 		$parallel_curl = new ParallelCurl( count($this->videoResults), $curl_options );
 		foreach ( $this->videoResults as $id ) {
