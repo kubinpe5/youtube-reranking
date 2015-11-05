@@ -9,7 +9,7 @@ include_once "QuerySearch.php";
 include_once "MetadataGetter.php";
 include_once "RerankInput.php";
 include_once "DateDistance.php";
-include_once "AuthorDistance";
+include_once "AuthorDistance.php";
 include_once "ViewsDistance.php";
 
 if (isset($_POST['submit'])) {
@@ -38,6 +38,7 @@ if (isset($_POST['submit'])) {
 
 	$dateDistance 	= new DateDistance( $metastores );
 	$viewsDistance 	= new ViewsDistance( $metastores );
+	$authorDistance = new AuthorDistance( $metastores );
 
 	$timeStart = microtime(true);
 		$dateDistance->compute( $rerankInputs['published']->getCheckbox(), $rerankInputs['published']->getRange(), $rerankInputs['published']->getValue() );
@@ -48,6 +49,11 @@ if (isset($_POST['submit'])) {
 		$viewsDistance->compute( $rerankInputs['views']->getCheckbox(), $rerankInputs['views']->getRange(), $rerankInputs['views']->getValue() );
 	$timeEnd = microtime(true);
 	$times['Výpočet vzdáleností počtu shlénutí'] = $timeEnd - $timeStart;
+
+	$timeStart = microtime(true);
+		$authorDistance->compute( $rerankInputs['author']->getCheckbox(), $rerankInputs['author']->getRange(), $rerankInputs['author']->getValue() );
+	$timeEnd = microtime(true);
+	$times['Výpočet vzdáleností jmen autorů'] = $timeEnd - $timeStart;
 
 	$allTimes = 0;
 	foreach( $times as $time )

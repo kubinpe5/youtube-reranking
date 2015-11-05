@@ -40,6 +40,7 @@ class MetadataStore {
 		$ret .= "Publikováno ".( (new \Datetime($this->publishedAt))->format('d. m. Y') )." (výpis jen dne)<br>";
 		$ret .= "Počet shlédnutí ".( $this->viewCount )." <br>";
 		$ret .= "<hr>";
+		$ret .= "Normalizovaná vzdálenost jmen autorů = ".$this->authorDistanceNormalized."<br></br>";
 		$ret .= "Normalizovaná vzdálenost datumu = ".$this->dateDistanceNormalized."<br>";
 		$ret .= "Normalizovaná vzdálenost počtu shlédnutí = ".$this->viewsDistanceNormalized."<br></br>";
 		return $ret;

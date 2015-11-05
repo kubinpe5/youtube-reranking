@@ -8,38 +8,40 @@ class AuthorDistance {
 		$this->metastores = $metastores;
 	}
 
+	public function levenshteinDistance( $user_string, $meta_string ) {
+		$m = strlen($user_string);
+		$n = strlen($meta_string);
+
+		for( $i = 0; $i <= $m; $i++ ) 
+			$distance[$i][0] = $i;
+		for( $j = 0; $j <= $n; $j++ ) 
+			$distance[0][$j] = $j;
+
+		for( $i = 1; $i <= $m; $i++ ) {
+			for( $j = 1 ; $j <= $n; $j++ ) {
+				$increment = ( $user_string[$i-1] == $meta_string[$j-1] ) ? 0 : 1;
+				$distance[$i][$j] = min( $distance[$i-1][$j] + 1, $distance[$i][$j-1] + 1, $distance[$i-1][$j-1] + $increment);
+			}
+		}
+		if( $distance[$m][$n] > $max ) $max = $distance[$m][$n];
+		return $distance[$m][$n];
+	}
+
 	public function compute( $checkbox, $weight, $author) {
 		if ( !checkbox || $author == null ) 
 			return;
-		$author_array = str_split($author);
-		$max = 0;
+		$max = PHP_INT_MIN;
 		// take each metadata author and compute distance with the string from input
 		foreach( $this->metastores as $metastore ) {
-			$meta_author_array = str_split($metastore->author);
 			// actual computing the distance
-//----------------------------------------------------------------------------------------------------------------
-			function lev($s,$t) {
-				$m = strlen($s);
-				$n = strlen($t);										// todo
-	
-				for($i=0;$i<=$m;$i++) $d[$i][0] = $i;
-				for($j=0;$j<=$n;$j++) $d[0][$j] = $j;
-	
-				for($i=1;$i<=$m;$i++) {
-					for($j=1;$j<=$n;$j++) {
-						$c = ($s[$i-1] == $t[$j-1])?0:1;
-						$d[$i][$j] = min($d[$i-1][$j]+1,$d[$i][$j-1]+1,$d[$i-1][$j-1]+$c);
-					}
-				}
-				if( $d[$m][$n] > $max ) $max = $d[$m][$n];
-				return $d[$m][$n];
-			}
-//----------------------------------------------------------------------------------------------------------------
-
+			$distance = $this->levenshteinDistance( $author, $metastore->author );
+			$metastore->authorDistance = $distance;
+			if( $distance > $max ) $max = $distance;
+			echo "Distance je: ".$distance."<br>";
 		}
-
-	}
-		// normalize 		// todo
+		echo "Maximum je: ".$max."<br>";
+		// normalize
 		foreach( $this->metastores as &$metastore )
-			$metastore->dateDistanceNormalized = ( 1 - ( $metastore->dateDistance / $max ) ) * $weight;
+			$metastore->authorDistanceNormalized = ( 1 - ( $metastore->authorDistance / $max ) ) * $weight;
+	}
 }
