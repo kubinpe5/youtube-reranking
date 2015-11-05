@@ -39,6 +39,7 @@ class MetadataStore {
 		$ret .= "Počet dislike je ".$this->dislikeCount.".<br>";
 		$ret .= "Počet komentů je ".$this->commentCount.".<br>";
 		*/
+		$ret .= "Jméno autora \"".( $this->author )."\" <br>";
 		$ret .= "Publikováno ".( (new \Datetime($this->publishedAt))->format('d. m. Y') )." (výpis jen dne)<br>";
 		$ret .= "Počet shlédnutí ".( $this->viewCount )." <br>";
 		$ret .= "<hr>";

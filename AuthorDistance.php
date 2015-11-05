@@ -37,9 +37,7 @@ class AuthorDistance {
 			$distance = $this->levenshteinDistance( $author, $metastore->author );
 			$metastore->authorDistance = $distance;
 			if( $distance > $max ) $max = $distance;
-			echo "Distance je: ".$distance."<br>";
 		}
-		echo "Maximum je: ".$max."<br>";
 		// normalize
 		foreach( $this->metastores as &$metastore )
 			$metastore->authorDistanceNormalized = ( 1 - ( $metastore->authorDistance / $max ) ) * $weight;
