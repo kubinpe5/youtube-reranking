@@ -17,6 +17,8 @@ class MetadataStore {
 	public $longitude;
 	public $publishedAt;
 
+	public $authorDistance = 0;
+	public $authorDistanceNormalized = 0;
 	public $dateDistance = 0;
 	public $dateDistanceNormalized = 0;
 	public $viewsDistance = 0;
@@ -40,9 +42,9 @@ class MetadataStore {
 		$ret .= "Publikováno ".( (new \Datetime($this->publishedAt))->format('d. m. Y') )." (výpis jen dne)<br>";
 		$ret .= "Počet shlédnutí ".( $this->viewCount )." <br>";
 		$ret .= "<hr>";
-		$ret .= "Normalizovaná vzdálenost jmen autorů = ".$this->authorDistanceNormalized."<br></br>";
+		$ret .= "Normalizovaná vzdálenost jmen autorů = ".$this->authorDistanceNormalized."<br>";
 		$ret .= "Normalizovaná vzdálenost datumu = ".$this->dateDistanceNormalized."<br>";
-		$ret .= "Normalizovaná vzdálenost počtu shlédnutí = ".$this->viewsDistanceNormalized."<br></br>";
+		$ret .= "Normalizovaná vzdálenost počtu shlédnutí = ".$this->viewsDistanceNormalized."<br><br>";
 		return $ret;
 	}
 
