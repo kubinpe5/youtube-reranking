@@ -12,6 +12,7 @@ class MetadataStore {
 	public $likeCount;
 	public $dislikeCount;
 	public $definition;
+	public $duration;
 	public $commentCount;
 	public $latitude;
 	public $longitude;

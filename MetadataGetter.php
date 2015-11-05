@@ -12,6 +12,7 @@ function on_request_done($content, $url, $ch, $search) {
 	$metastore->author = $my_hash->items[0]->snippet->channelTitle;
 	$metastore->publishedAt = $my_hash->items[0]->snippet->publishedAt;
 	$metastore->definition = $my_hash->items[0]->contentDetails->definition;
+	$metastore->duration = $my_hash->items[0]->contentDetails->duration;
 	$metastore->viewCount = $my_hash->items[0]->statistics->viewCount;
 	$metastore->likeCount = $my_hash->items[0]->statistics->likeCount;
 	$metastore->dislikeCount = $my_hash->items[0]->statistics->dislikeCount;
