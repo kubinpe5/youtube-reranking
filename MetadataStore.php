@@ -24,29 +24,46 @@ class MetadataStore {
 	public $dateDistanceNormalized = 0;
 	public $viewsDistance = 0;
 	public $viewsDistanceNormalized = 0;
+	public $gpsDistance = 0;
+	public $gpsDistanceNormalized = 0;
+
+	public $rerankResult = 0;
 
 	public function __toString() {
-		$ret = "";
-		/*
-		$ret .= "Id = ".$this->id."<br>";
-		$ret .= "Name = ".$this->name.".<br>";
-		$ret .= "Author = ".$this->author.".<br>";
-		$ret .= "Publikováno = ".$this->publishedAt.".<br>";
-		$ret .= "Rozlišení = ".$this->definition.".<br>";
-		$ret .= "latitude = ".$this->latitude.".<br>";
-		$ret .= "longitude = ".$this->longitude.".<br>";
-		$ret .= "Počet shlédnutí je ".$this->viewCount.".<br>";
-		$ret .= "Počet like je ".$this->likeCount.".<br>";
-		$ret .= "Počet dislike je ".$this->dislikeCount.".<br>";
-		$ret .= "Počet komentů je ".$this->commentCount.".<br>";
-		*/
-		$ret .= "Jméno autora \"".( $this->author )."\" <br>";
-		$ret .= "Publikováno ".( (new \Datetime($this->publishedAt))->format('d. m. Y') )." (výpis jen dne)<br>";
-		$ret .= "Počet shlédnutí ".( $this->viewCount )." <br>";
-		$ret .= "<hr>";
-		$ret .= "Normalizovaná vzdálenost jmen autorů = ".$this->authorDistanceNormalized."<br>";
-		$ret .= "Normalizovaná vzdálenost datumu = ".$this->dateDistanceNormalized."<br>";
-		$ret .= "Normalizovaná vzdálenost počtu shlédnutí = ".$this->viewsDistanceNormalized."<br><br>";
+		$ret = "<dl class=\"videoInformation\">";
+		$ret .= "<dt>Jméno autora<dt>";
+		$ret .= "<dd>" . $this->author . "</dd>";
+		$ret .= "<dt>Publikováno<dt>";
+		$ret .= "<dd>" . ( ( new \Datetime( $this->publishedAt ) )->format( 'd. m. Y' ) ) . "</dd>";
+		$ret .= "<dt>Počet shlédnutí<dt>";
+		$ret .= "<dd>" . $this->viewCount . "</dd>";
+		$ret .= "<dt>GPS souřadnice<dt>";
+		if( $this->longitude == "" || $this->latitude == "" )
+			$ret .= "<dd>CHYBÍ</dd>";
+		else
+			$ret .= "<dd>" . $this->longitude . ", " . $this->latitude . "</dd>";
+		$ret .= "</dl>";
+		$ret .= "<table class=\"rerankingResults\">";
+		$ret .= "<caption>Výsledky rerankingu</caption>";
+		$ret .= "<thead>";
+		$ret .= "<tr>";
+		$ret .= "<th>Položka</th>";
+		$ret .= "<th>Hodnota</th>";
+		$ret .= "</tr>";
+		$ret .= "</thead>";
+		$ret .= "<tfoot>";
+		$ret .= "<tr>";
+		$ret .= "<th>Celkový výsledek k přerankování</th>";
+		$ret .= "<th>$this->rerankResult</th>";
+		$ret .= "</tr>";
+		$ret .= "</tfoot>";
+		$ret .= "<tbody>";
+		$ret .= "<tr><td>Normalizovaná vzdálenost jmen autorů</td><td>" . $this->authorDistanceNormalized . "</td></tr>";
+		$ret .= "<tr><td>Normalizovaná vzdálenost datumu</td><td>" . $this->dateDistanceNormalized . "</td></tr>";
+		$ret .= "<tr><td>Normalizovaná vzdálenost počtu shlédnutí</td><td>" . $this->viewsDistanceNormalized . "</td></tr>";
+		$ret .= "<tr><td>Normalizovaná vzdálenost GPS souřadnic</td><td>" . $this->gpsDistanceNormalized . "</td></tr>";
+		$ret .= "</tbody>";
+		$ret .= "</table>";
 		return $ret;
 	}
 
@@ -55,8 +72,16 @@ class MetadataStore {
 		return $this;
 	}
 
-	public function getOldRank(  ) {
+	public function getOldRank() {
 		return $this->oldRank;
+	}
+
+	public function computeRerankResult() {
+		$this->rerankResult =
+			$this->authorDistanceNormalized +
+			$this->dateDistanceNormalized +
+			$this->viewsDistanceNormalized +
+			$this->gpsDistanceNormalized;
 	}
 
 }
