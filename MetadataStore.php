@@ -17,6 +17,7 @@ class MetadataStore {
 	public $latitude;
 	public $longitude;
 	public $publishedAt;
+	public $sddefault;
 
 	public $authorDistance = 0;
 	public $authorDistanceNormalized = 0;
@@ -43,7 +44,10 @@ class MetadataStore {
 		if( $this->longitude == "" || $this->latitude == "" )
 			$ret .= "<dd>CHYBÍ</dd>";
 		else
-			$ret .= "<dd>" . $this->longitude . ", " . $this->latitude . "</dd>";
+			$ret .= "<dd>" . $this->longitude . ",</br> " . $this->latitude . "</dd>";
+		$ret .= "<dt>Odkaz na video<dt>";
+		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\"><img src=\"" . $this->sddefault . "\" target=\"_blank\"></a></dd>";
+
 		$ret .= "</dl>";
 		$ret .= "<table class=\"rerankingResults\">";
 		$ret .= "<caption>Výsledky rerankingu</caption>";

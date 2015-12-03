@@ -1,0 +1,28 @@
+.center {
+	text-align: center;
+}
+
+.heading {
+	text-decoration: underline;
+	font-size: 1.5em;
+	color: #fff;
+	opacity: none;
+	background-color: #cc181e;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+.heading1 {
+	font-size: 4em;
+	color: black;
+}
+
+.logo {
+	display: block;
+	margin: auto;
+}
+
+.top-buffer {
+	margin-top: 3em;
+}
+

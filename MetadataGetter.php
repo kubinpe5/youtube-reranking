@@ -17,6 +17,7 @@ function on_request_done($content, $url, $ch, $search) {
 	$metastore->likeCount = $my_hash->items[0]->statistics->likeCount;
 	$metastore->dislikeCount = $my_hash->items[0]->statistics->dislikeCount;
 	$metastore->commentCount = $my_hash->items[0]->statistics->commentCount;
+	$metastore->sddefault = $my_hash->items[0]->snippet->thumbnails->high->url;
 	$metastore->latitude = $my_hash->items[0]->recordingDetails->location->latitude;
 	$metastore->longitude = $my_hash->items[0]->recordingDetails->location->longitude;
 	$GLOBALS['metastores'][] = $metastore;
