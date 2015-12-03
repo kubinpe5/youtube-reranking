@@ -113,7 +113,6 @@ if( isset( $_POST[ 'submit' ] ) ) {
                             </dd>
                         </dl>
                     </div>
-                    <dl>
                 </fieldset>
                 <fieldset class="rerankInformation col-xs-6 col-sm-6 col-md-6 col-lg-6">
                     <h2 class="center heading">Informace k přerankování</h2>
@@ -239,7 +238,6 @@ if( isset( $_POST[ 'submit' ] ) ) {
             </table>
             <?php } ?>
         </div>
-    </div>
     </div>
 </body>
 
