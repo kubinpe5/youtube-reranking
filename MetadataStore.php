@@ -31,6 +31,8 @@ class MetadataStore {
 
 	public function __toString() {
 		$ret = "<dl class=\"videoInformation\">";
+		$ret .= "<dt>Název videa<dt>";
+		$ret .= "<dd>" . $this->name . "</dd>";
 		$ret .= "<dt>Jméno autora<dt>";
 		$ret .= "<dd>" . $this->author . "</dd>";
 		$ret .= "<dt>Publikováno<dt>";
