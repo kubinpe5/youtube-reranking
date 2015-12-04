@@ -46,7 +46,7 @@ class MetadataStore {
 		else
 			$ret .= "<dd>" . $this->longitude . ", " . $this->latitude . "</dd>";
 		$ret .= "<dt>Odkaz na video<dt>";
-		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\" target=\"_blank\"><img src=\"" . $this->sddefault . "\"></a></dd>";
+		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\" target=\"_blank\"><img class=\"img-responsive\" src=\"" . $this->sddefault . "\"></a></dd>";
 
 		$ret .= "</dl>";
 		$ret .= "<table class=\"rerankingResults\">";

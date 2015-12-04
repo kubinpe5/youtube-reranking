@@ -69,12 +69,8 @@ table.times>tfoot>tr>td:first-child+td {
 	text-align: center;
 }
 
-table.results>thead>tr>th {
-	text-align: center;
-}
-
 table.results>tbody>tr>td>dl>dt:after {
-	
+	background-color: blue;
 }
 
 table.rerankingResults>thead>tr>th,
@@ -82,6 +78,21 @@ table.rerankingResults>tbody>tr>td,
 table.rerankingResults>tbody>tr,
 table.rerankingResults>tfoot>tr>td {
 	border: 1px solid #cc181e;
+}
+
+table.rerankingResults>tfoot>tr>th {
+	font-weight: bold;
+	border: 2px solid #cc181e;
+}
+
+table.rerankingResults>thead>tr>th {
+	text-align: center;
+	font-weight: bold;
+	border: 2px solid #cc181e;
+}
+
+table.rerankingResults>tfoot>tr>th:first-child+th {
+	text-align: center;
 }
 
 table.results>tbody>tr>td>table>caption {
@@ -96,6 +107,50 @@ table.results>tbody>tr>td>table>tbody>tr>td:first-child+td {
 	text-align: right;
 }
 
+
+/* video Information */
+
+dl.videoInformation>dt {
+	font-size: 1.2em;
+	font-style: italic;
+	font-size: bold;
+}
+
+
+dl.videoInformation>dd:nth-child(3) {
+	padding-left: 5em;
+	color: #00008B;
+	font-size: italic;
+}
+
+dl.videoInformation>dd:nth-child(6) {
+	padding-left: 5em;
+	color: #00008B;
+	font-size: italic;
+}
+
+dl.videoInformation>dd:nth-child(9) {
+	padding-left: 5em;
+	color: #00008B;
+	font-size: italic;
+}
+
+dl.videoInformation>dd:nth-child(12) {
+	padding-left: 5em;
+	color: #00008B;
+	font-size: italic;
+}
+
+dl.videoInformation>dd:nth-child(15) {
+	padding-left: 5em;
+	color: #00008B;
+	font-size: italic;
+}
+
+td.metadata>table {
+	margin-left: auto;
+	margin-right: auto;
+}
 
 /* style for range inputs */
 input[type=range] {
@@ -184,7 +239,7 @@ input[type=range]:focus::-ms-fill-upper {
 	background: #1a1aff;
 }
 
-/* checkbox try */
+/* checkbox */
 input[type="checkbox"] {
     display:none;
 }
@@ -192,13 +247,19 @@ input[type="checkbox"] + label {
     display:inline-block;
     width: 19px;
     height: 19px;
-    /*margin: -1px 4px 0 0;*/
+    margin-top: 0.5em;
+    background-color: black;
+    /*margin-left: 4em; */
     vertical-align: middle;
     background: url(check_radio_sheet.png) left top no-repeat;
     cursor: pointer;
 }
 input[type="checkbox"]:checked + label {
     background:url(check_radio_sheet.png) -19px top no-repeat;
+}
+
+fieldset.rerankInformation>div.subcontent>dl>dd>div.row>div:first-child {
+	text-align: center;
 }
 
 /* results formating dl */
@@ -219,7 +280,9 @@ input[type="checkbox"]:checked + label {
 }
 
 #footer dl {
+	margin-top: 1em;
 	padding: 2em;
 	background-color: #cc181e;
 	color: white;
 }
+
