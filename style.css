@@ -61,6 +61,41 @@ div table.subcontentTable>tfoot {
 	border-top: 2px solid #cc181e;
 }
 
+table.times>tbody>tr>td:first-child+td {
+	text-align: center;
+}
+
+table.times>tfoot>tr>td:first-child+td {
+	text-align: center;
+}
+
+table.results>thead>tr>th {
+	text-align: center;
+}
+
+table.results>tbody>tr>td>dl>dt:after {
+	
+}
+
+table.rerankingResults>thead>tr>th,
+table.rerankingResults>tbody>tr>td,
+table.rerankingResults>tbody>tr,
+table.rerankingResults>tfoot>tr>td {
+	border: 1px solid #cc181e;
+}
+
+table.results>tbody>tr>td>table>caption {
+	text-align: center;
+	color: #cc181e;
+	text-decoration: underline;
+	font-weight: bold;
+	font-size: 1.5em;
+}
+
+table.results>tbody>tr>td>table>tbody>tr>td:first-child+td {
+	text-align: right;
+}
+
 
 /* style for range inputs */
 input[type=range] {
@@ -147,4 +182,44 @@ input[type=range]:focus::-ms-fill-lower {
 }
 input[type=range]:focus::-ms-fill-upper {
 	background: #1a1aff;
+}
+
+/* checkbox try */
+input[type="checkbox"] {
+    display:none;
+}
+input[type="checkbox"] + label {
+    display:inline-block;
+    width: 19px;
+    height: 19px;
+    /*margin: -1px 4px 0 0;*/
+    vertical-align: middle;
+    background: url(check_radio_sheet.png) left top no-repeat;
+    cursor: pointer;
+}
+input[type="checkbox"]:checked + label {
+    background:url(check_radio_sheet.png) -19px top no-repeat;
+}
+
+/* results formating dl */
+/* to nevím jak na to :(*/
+
+
+/* patička */
+#footer dt:before {
+  content:"| ";
+}
+
+#footer dl:after {
+  content:" |"; 
+}
+
+#footer dd, #footer dt {
+  display: inline;
+}
+
+#footer dl {
+	padding: 2em;
+	background-color: #cc181e;
+	color: white;
 }

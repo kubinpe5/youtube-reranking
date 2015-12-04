@@ -91,6 +91,7 @@ if( isset( $_POST[ 'submit' ] ) ) {
 	<title>MI-VMW</title>
 	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="icon" href="icon.png" sizes="16x16" type="image/png">
 </head>
 <body>
 <div class="container">
@@ -124,7 +125,8 @@ if( isset( $_POST[ 'submit' ] ) ) {
 						<dd>
 							<div class="row">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<input class="authorComputing" type="checkbox" <?php echo ( $rerankInputs[ 'author' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo AUTHOR_CHECKBOX; ?>">
+									<input class="authorComputing" id="c1" type="checkbox" <?php echo ( $rerankInputs[ 'author' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo AUTHOR_CHECKBOX; ?>">
+                                    <label for="c1"></label>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 									<input class="authorRange" type="range" value="<?php echo $rerankInputs[ 'author' ]->getRange(); ?>" name="<?php echo AUTHOR_SCALE; ?>" min="<?php echo MIN_WEIGHT; ?>" max="<?php echo MAX_WEIGHT; ?>">
@@ -138,7 +140,8 @@ if( isset( $_POST[ 'submit' ] ) ) {
 						<dd>
 							<div class="row">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<input class="publishedComputing" type="checkbox" <?php echo ( $rerankInputs[ 'published' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo PUBLISHED_CHECKBOX; ?>">
+									<input class="publishedComputing" id="c2" type="checkbox" <?php echo ( $rerankInputs[ 'published' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo PUBLISHED_CHECKBOX; ?>">
+                                    <label for="c2"></label>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 									<input class="publishedRange" type="range" value="<?php echo $rerankInputs[ 'published' ]->getRange(); ?>" name="<?php echo PUBLISHED_SCALE; ?>" min="<?php echo MIN_WEIGHT; ?>" max="<?php echo MAX_WEIGHT; ?>">
@@ -152,7 +155,8 @@ if( isset( $_POST[ 'submit' ] ) ) {
 						<dd>
 							<div class="row">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<input class="gpsComputing" type="checkbox" <?php echo ( $rerankInputs[ 'gps' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo GPS_CHECKBOX; ?>">
+									<input class="gpsComputing" id="c3" type="checkbox" <?php echo ( $rerankInputs[ 'gps' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo GPS_CHECKBOX; ?>">
+                                    <label for="c3"></label>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 									<input class="gpsRange" type="range" value="<?php echo $rerankInputs[ 'gps' ]->getRange(); ?>" name="<?php echo GPS_SCALE; ?>" min="<?php echo MIN_WEIGHT; ?>" max="<?php echo MAX_WEIGHT; ?>">
@@ -166,7 +170,8 @@ if( isset( $_POST[ 'submit' ] ) ) {
 						<dd>
 							<div class="row">
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
-									<input class="viewsComputing" type="checkbox" <?php echo ( $rerankInputs[ 'views' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo VIEWS_CHECKBOX; ?>">
+									<input class="viewsComputing" id="c4" type="checkbox" <?php echo ( $rerankInputs[ 'views' ]->getCheckbox() ) ? 'checked' : ''; ?> name="<?php echo VIEWS_CHECKBOX; ?>">
+                                    <label for="c4"></label>
 								</div>
 								<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
 									<input class="viewsRange" type="range" value="<?php echo $rerankInputs[ 'views' ]->getRange(); ?>" name="<?php echo VIEWS_SCALE; ?>" min="<?php echo MIN_WEIGHT; ?>" max="<?php echo MAX_WEIGHT; ?>">
@@ -216,7 +221,7 @@ if( isset( $_POST[ 'submit' ] ) ) {
 	</div>
 	<div class="row">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-			<table class="results table table-bordered subcontentTable">
+			<table class="results table table-bordered subcontentTable table-striped">
 				<caption class="center heading top-buffer">Výsledky</caption>
 				<thead>
 				<tr>
@@ -245,5 +250,19 @@ if( isset( $_POST[ 'submit' ] ) ) {
 		</div>
 	</div>
 </div>
+
+<div id="footer">
+  <div class="container center">
+    <dl class="text-muted">
+      <dt>Copyright</dt>
+        <dd>© 2015 - 2016</dd>
+      <dt>Webmasters</dt>
+        <dd>Kubín Petr &amp; Herbert Waage</dd>
+      <dt>Aktualizováno</dt>
+        <dd>5.12.2015</dd>
+    </dl>
+  </div>
+</div>
+
 </body>
 </html>

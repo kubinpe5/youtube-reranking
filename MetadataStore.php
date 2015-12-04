@@ -30,7 +30,7 @@ class MetadataStore {
 
 	public $rerankResult = 0;
 
-	public function __toString() {
+	public function __toString() {	
 		$ret = "<dl class=\"videoInformation\">";
 		$ret .= "<dt>Název videa<dt>";
 		$ret .= "<dd>" . $this->name . "</dd>";
@@ -44,9 +44,9 @@ class MetadataStore {
 		if( $this->longitude == "" || $this->latitude == "" )
 			$ret .= "<dd>CHYBÍ</dd>";
 		else
-			$ret .= "<dd>" . $this->longitude . ",</br> " . $this->latitude . "</dd>";
+			$ret .= "<dd>" . $this->longitude . ", " . $this->latitude . "</dd>";
 		$ret .= "<dt>Odkaz na video<dt>";
-		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\"><img src=\"" . $this->sddefault . "\" target=\"_blank\"></a></dd>";
+		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\" target=\"_blank\"><img src=\"" . $this->sddefault . "\"></a></dd>";
 
 		$ret .= "</dl>";
 		$ret .= "<table class=\"rerankingResults\">";
