@@ -1,0 +1,76 @@
+\documentclass[a4paper,11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[czech]{babel}
+\usepackage{listings}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
+
+
+\title{Závěrečná zpráva k semestrální práci\\
+		YouTube reranking\\}
+\vfill
+\author{Petr Kubín\\
+Herbert Waage\\
+FIT ČVUT\\}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+\newpage
+
+\section{Popis projektu}
+\subsection{Zadání práce}
+\par{Cílem projektu je vytvoření aplikace umožňující vylepšené vyhledávání ve fotografiích uložených na serveru \href{www.youtube.com}{Youtube}. Youtube poskytuje aplikační rozhraní umožňující získat prakticky libovolná data o videích, která jsou
+přístupna i z oficiálního webového rozhraní. Cílem projektu je tedy aplikace, která umožní vyhledávání na
+Youtube založené na klíčových slovech, stejně jako je tomu na Youtube nyní, ale navíc bude možné zadat
+sekundární vyhledávání na libovolná metadata.}
+\subsection{Vstup}
+\par{Klíčové slovo, sada hodnot metadat pro setřídění a počet výsledků (omezení velikosti výstupu).}
+\subsection{Výstup}
+\par{Videa, jejichž popis odpovídá klíčovému slovu. Videa budou setříděna podle vzdálenosti ke zvoleným
+metadatům.}
+
+\section{Způsob řešení}
+\subsection{Komunikace s Youtube API}
+\par Začátek komunikace s Youtube API probíhá zadáním dotahu do formuláře, odkud nám Youtube vrátí veškerá videa odpovídající hledanému výrazu s omezením maximálního počtu videí. Zde vezmeme každé video a pomocí parseru zjistíme identifikátor videa, což je řetězec za watch?v=, dlouhý max 12 znaků a omezený buď koncem řetězce nebo znakem \&. Po získání identifikátoru videa jsme přešli ke stažení metadat. 
+
+\subsection{Identifikace záznamů odpovídajících klíčovému slovu}
+
+\subsection{Získání metadat k (identifikovaným) záznamům}
+\par Pro získání jsme použili curl, neboť standartní HTTP požadavek není na školním serveru webdev, kde je naše aplikace umístěna, povolen. Pro začátek komunikace je potřeba mít vlastní API klíč, který umožní identifikovat náš program oproti YouTube API a tím dokončit požadavek. Pro samotné získání metadat jsme využili \url{https://www.googleapis.com/youtube/v3/videos?id=".$id."&key=".API_KEY."&part=snippet,statistics,contentDetails,recordingDetails}. Kde proměnná \$id je identifikátor videa získaný rozparsováním url adresy a API\_KEY je již zmiňovaný unikátní klíč.
+
+\subsection{Výpočty různých typů vzdáleností}
+
+\subsection{Třídění podle daných atributů}
+
+\subsection{Webový interface}
+
+\section{Příklad výstupu}
+
+
+\section{Experimentální sekce}
+
+
+\section{Diskuze}
+
+
+\section{Závěr}
+
+
+\newpage
+\renewcommand{\refname}{Citace}
+\begin{thebibliography}{9}
+	\bibitem{YouTube API}
+	Getting Started with the YouTube Data API: \textit{Google Developers} [online]. [cit. 13. 11. 2014]. 
+	Dostupné z~WWW: \verb|<|\url{https://developers.google.com/youtube/v3/getting-started}\verb|>|.
+
+\end{thebibliography}
+
+\end{document}
