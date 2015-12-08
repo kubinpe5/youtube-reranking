@@ -5,12 +5,12 @@
 \contentsline {subsection}{\numberline {1.3}V\IeC {\'y}stup}{3}{subsection.1.3}
 \contentsline {section}{\numberline {2}Zp\IeC {\r u}sob \IeC {\v r}e\IeC {\v s}en\IeC {\'\i }}{3}{section.2}
 \contentsline {subsection}{\numberline {2.1}Komunikace s Youtube API}{3}{subsection.2.1}
-\contentsline {subsection}{\numberline {2.2}Identifikace z\IeC {\'a}znam\IeC {\r u} odpov\IeC {\'\i }daj\IeC {\'\i }c\IeC {\'\i }ch kl\IeC {\'\i }\IeC {\v c}ov\IeC {\'e}mu slovu}{4}{subsection.2.2}
-\contentsline {subsection}{\numberline {2.3}Z\IeC {\'\i }sk\IeC {\'a}n\IeC {\'\i } metadat k (identifikovan\IeC {\'y}m) z\IeC {\'a}znam\IeC {\r u}m}{4}{subsection.2.3}
+\contentsline {subsection}{\numberline {2.2}Identifikace z\IeC {\'a}znam\IeC {\r u} odpov\IeC {\'\i }daj\IeC {\'\i }c\IeC {\'\i }ch kl\IeC {\'\i }\IeC {\v c}ov\IeC {\'e}mu slovu}{3}{subsection.2.2}
+\contentsline {subsection}{\numberline {2.3}Z\IeC {\'\i }sk\IeC {\'a}n\IeC {\'\i } metadat k (identifikovan\IeC {\'y}m) z\IeC {\'a}znam\IeC {\r u}m}{3}{subsection.2.3}
 \contentsline {subsection}{\numberline {2.4}V\IeC {\'y}po\IeC {\v c}ty r\IeC {\r u}zn\IeC {\'y}ch typ\IeC {\r u} vzd\IeC {\'a}lenost\IeC {\'\i }}{4}{subsection.2.4}
 \contentsline {subsection}{\numberline {2.5}T\IeC {\v r}\IeC {\'\i }d\IeC {\v e}n\IeC {\'\i } podle dan\IeC {\'y}ch atribut\IeC {\r u}}{4}{subsection.2.5}
-\contentsline {subsection}{\numberline {2.6}Webov\IeC {\'y} interfac}{4}{subsection.2.6}
+\contentsline {subsection}{\numberline {2.6}Webov\IeC {\'y} interface}{4}{subsection.2.6}
 \contentsline {section}{\numberline {3}P\IeC {\v r}\IeC {\'\i }klad v\IeC {\'y}stupu}{4}{section.3}
-\contentsline {section}{\numberline {4}Experiment\IeC {\'a}ln\IeC {\'\i } sekce}{4}{section.4}
-\contentsline {section}{\numberline {5}Diskuze}{4}{section.5}
-\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{4}{section.6}
+\contentsline {section}{\numberline {4}Experiment\IeC {\'a}ln\IeC {\'\i } sekce}{5}{section.4}
+\contentsline {section}{\numberline {5}Diskuze}{5}{section.5}
+\contentsline {section}{\numberline {6}Z\IeC {\'a}v\IeC {\v e}r}{5}{section.6}

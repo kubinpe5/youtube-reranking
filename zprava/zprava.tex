@@ -6,7 +6,7 @@
 \usepackage{amsmath}
 \usepackage{graphicx}
 \usepackage{hyperref}
-
+\usepackage{indentfirst}
 
 
 \title{Závěrečná zpráva k semestrální práci\\
@@ -46,16 +46,32 @@ sekundární vyhledávání na libovolná metadata.}
 \par Pro získání jsme použili curl, neboť standartní HTTP požadavek není na školním serveru webdev, kde je naše aplikace umístěna, povolen. Pro začátek komunikace je potřeba mít vlastní API klíč, který umožní identifikovat náš program oproti YouTube API a tím dokončit požadavek. Pro samotné získání metadat jsme využili \url{https://www.googleapis.com/youtube/v3/videos?id=".$id."&key=".API_KEY."&part=snippet,statistics,contentDetails,recordingDetails}. Kde proměnná \$id je identifikátor videa získaný rozparsováním url adresy a API\_KEY je již zmiňovaný unikátní klíč.
 
 \subsection{Výpočty různých typů vzdáleností}
+\par V naší aplikaci se vyskytuje několik datových typů: řetězec, číslo, GPS, datun. Pro každý datový typ jsme museli použít správný výpočet vzdálennosti. Pro číselné datové typy jsme použili euklidovskou vzdálennost. GPSky jsme porovnali pomocí Great circle distance, která přesně určí nejmenší vzdálennost na naší zeměkouli.
+\par Pro typ řetězec, který je použit u jména Autora videa, jsme naprogramovali Levenshteinovu(editační) vzdálenost, která reprezentuje počet operací nutných k převedení jednoho řetězce na druhý.
 
 \subsection{Třídění podle daných atributů}
+\par // TODO
 
 \subsection{Webový interface}
+\par Naše aplikace je nasazena na \href{http://webdev.fit.cvut.cz/~kubinpe5/MI-VMW/}{serveru webdev}. Pro styly jsme použili framework bootstrap, který umožňuje efektivní formátovaní webových elementů. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{obrazova_priloha/sample_project.png}
+	\caption{Náhled aplikace}
+\end{figure}
 
 \section{Příklad výstupu}
+\par Výstup se skládá ze dvou sloupců. Levý sloupec reprezentuje staré uspořádání dat a pravý sloupec nové pořadí dle uživatelského vstupu v sekci informace k přerankování. Celkový počet videí je omezen znovu uživatelským vstupem. V následující kapitole bude zmíněno testování rychlosti.
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=\textwidth]{obrazova_priloha/sample_result.png}
+	\caption{Náhled výsledku}
+\end{figure}
+
 
 
 \section{Experimentální sekce}
-
+\par //TODO
 
 \section{Diskuze}
 
