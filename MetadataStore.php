@@ -32,6 +32,8 @@ class MetadataStore {
 
 	public function __toString() {	
 		$ret = "<dl class=\"videoInformation\">";
+		$ret .= "<dt class=\"rrvid\">Odkaz na video<dt>";
+		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\" target=\"_blank\"><img class=\"img-responsive\" src=\"" . $this->sddefault . "\"></a></dd>";
 		$ret .= "<dt>Název videa<dt>";
 		$ret .= "<dd>" . $this->name . "</dd>";
 		$ret .= "<dt>Jméno autora<dt>";
@@ -45,8 +47,6 @@ class MetadataStore {
 			$ret .= "<dd>CHYBÍ</dd>";
 		else
 			$ret .= "<dd>" . $this->longitude . ", " . $this->latitude . "</dd>";
-		$ret .= "<dt>Odkaz na video<dt>";
-		$ret .= "<dd><a href=\"https://www.youtube.com/watch?v=" . $this->id . "\" target=\"_blank\"><img class=\"img-responsive\" src=\"" . $this->sddefault . "\"></a></dd>";
 
 		$ret .= "</dl>";
 		$ret .= "<table class=\"rerankingResults\">";

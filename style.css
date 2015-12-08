@@ -104,7 +104,7 @@ table.results>tbody>tr>td>table>caption {
 }
 
 table.results>tbody>tr>td>table>tbody>tr>td:first-child+td {
-	text-align: right;
+	text-align: center;
 }
 
 
@@ -117,7 +117,7 @@ dl.videoInformation>dt {
 }
 
 
-dl.videoInformation>dd:nth-child(3) {
+dl.videoInformation>dd:nth-child(18) {
 	padding-left: 5em;
 	color: #00008B;
 	font-size: italic;
@@ -286,3 +286,6 @@ fieldset.rerankInformation>div.subcontent>dl>dd>div.row>div:first-child {
 	color: white;
 }
 
+.rrvid {
+	display: none;
+}
